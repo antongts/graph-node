@@ -4,7 +4,7 @@ mod pbcodec;
 use graph::{
     blockchain::Block,
     blockchain::BlockPtr,
-    prelude::{hex, web3::types::H256, BlockNumber},
+    prelude::{hex, serde_json as json, web3::types::H256, BlockNumber},
 };
 use std::convert::TryFrom;
 use std::fmt::LowerHex;
@@ -68,5 +68,9 @@ impl Block for BlockWrapper {
 
     fn parent_ptr(&self) -> Option<BlockPtr> {
         self.parent_ptr()
+    }
+
+    fn data(&self) -> Result<json::Value, json::Error> {
+        Ok(json::Value::Null)
     }
 }
